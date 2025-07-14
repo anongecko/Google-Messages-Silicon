@@ -4,7 +4,7 @@
   "productName": "Google Messages",
   "version": "0.1.0",
   "build": {
-    "devUrl": "https://messages.google.com"
+    "devUrl": "https://messages.google.com/web/"
   },
   "bundle": {
     "active": true,
@@ -22,7 +22,7 @@
     },
     "windows": [
       {
-        "url": "https://messages.google.com",
+        "url": "https://messages.google.com/web/",
         "fullscreen": false,
         "height": 800,
         "resizable": true,
