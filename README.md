@@ -2,6 +2,20 @@
 
 A blazingly fast, memory-efficient native wrapper for Claude.ai, specifically optimized for Apple Silicon Macs. Built with Rust and Tauri 2.0 for unparalleled performance.
 
+## 💻 Installation
+
+1.  Download the latest `Claude-for-Mac.dmg` file from the [**GitHub Releases**](https://github.com/your-username/your-repo/releases) page.
+2.  Open the `.dmg` file and drag the **Claude** app into your `Applications` folder.
+
+### **Important First-Time Setup**
+Because this app is distributed for free outside the Mac App Store, you'll need to manually approve it the first time you open it.
+
+1.  Right-click (or `Ctrl`-click) the **Claude** app icon in your `Applications` folder.
+2.  Select **Open** from the menu.
+3.  A final warning will pop up. Click the **Open** button to run the app.
+
+You only need to do this once! After that, you can open the app normally.
+
 ## 🚀 Performance Metrics
 
 - **App Size**: ~8MB (compared to 100MB+ for Electron alternatives)
