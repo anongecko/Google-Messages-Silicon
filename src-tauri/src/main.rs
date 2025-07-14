@@ -7,7 +7,7 @@ use tauri::{
     AppHandle, Manager, Runtime, WindowEvent,
 };
 
-const APP_NAME: &str = "Gemini";
+const APP_NAME: &str = "Google Messages";
 
 fn main() {
     tauri::Builder::default()

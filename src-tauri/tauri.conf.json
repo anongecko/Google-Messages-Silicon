@@ -1,10 +1,10 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
-  "identifier": "ai.gemini.wrapper",
-  "productName": "Gemini",
+  "identifier": "ai.messages.wrapper",
+  "productName": "Google Messages",
   "version": "0.1.0",
   "build": {
-    "devUrl": "https://gemini.google.com"
+    "devUrl": "https://messages.google.com"
   },
   "bundle": {
     "active": true,
@@ -22,11 +22,11 @@
     },
     "windows": [
       {
-        "url": "https://gemini.google.com",
+        "url": "https://messages.google.com",
         "fullscreen": false,
         "height": 800,
         "resizable": true,
-        "title": "Gemini",
+        "title": "Google Messages",
         "width": 1280,
         "visible": false,
         "userAgent": "Mozilla/5.0 (Macintosh; Arm Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15",
