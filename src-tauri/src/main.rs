@@ -1,18 +1,22 @@
-// This is a macOS-only application, so the windows_subsystem attribute is not needed.
+#[cfg(target_os = "macos")]
+#[global_allocator]
+static GLOBAL: tikv_jemallocator::Jemalloc = tikv_jemallocator::Jemalloc;
 
 use tauri::{
-    menu::{AboutMetadata, Menu, MenuItem, PredefinedMenuItem, Submenu},
+    menu::{AboutMetadata, Menu, PredefinedMenuItem, Submenu},
     AppHandle, Manager, Runtime, WindowEvent,
 };
 
+const APP_NAME: &str = "Gemini";
+
 fn main() {
     tauri::Builder::default()
-        // Initialize the opener plugin. Navigation is now handled by tauri.conf.json.
         .plugin(tauri_plugin_opener::init())
         .menu(|handle| create_menu(handle))
         .setup(|app| {
-            // Setup is only used to show the window. Navigation is handled declaratively.
             if let Some(main_window) = app.get_webview_window("main") {
+                // Small delay for initial render
+                std::thread::sleep(std::time::Duration::from_millis(50));
                 main_window.show()?;
             }
             Ok(())
@@ -28,22 +32,17 @@ fn main() {
         .expect("error while running tauri application");
 }
 
-// Helper function to create the application menu, using the correct Tauri v2.6.2 API.
 fn create_menu<R: Runtime>(handle: &AppHandle<R>) -> tauri::Result<Menu<R>> {
-    let app_name = &handle.package_info().name;
-
-    // --- App Menu ---
-    // The correct pattern is to use `Submenu::with_items` to build the submenu and its contents at once.
     let app_menu = Submenu::with_items(
         handle,
-        app_name,
+        APP_NAME,
         true,
         &[
             &PredefinedMenuItem::about(
                 handle,
                 None,
                 Some(AboutMetadata {
-                    name: Some(app_name.to_string()),
+                    name: Some(APP_NAME.to_string()),
                     ..Default::default()
                 }),
             )?,
@@ -58,7 +57,6 @@ fn create_menu<R: Runtime>(handle: &AppHandle<R>) -> tauri::Result<Menu<R>> {
         ],
     )?;
 
-    // --- File Menu ---
     let file_menu = Submenu::with_items(
         handle,
         "File",
@@ -66,7 +64,6 @@ fn create_menu<R: Runtime>(handle: &AppHandle<R>) -> tauri::Result<Menu<R>> {
         &[&PredefinedMenuItem::close_window(handle, None)?],
     )?;
 
-    // --- Edit Menu ---
     let edit_menu = Submenu::with_items(
         handle,
         "Edit",
@@ -82,7 +79,6 @@ fn create_menu<R: Runtime>(handle: &AppHandle<R>) -> tauri::Result<Menu<R>> {
         ],
     )?;
 
-    // --- Window Menu ---
     let window_menu = Submenu::with_items(
         handle,
         "Window",
@@ -90,9 +86,7 @@ fn create_menu<R: Runtime>(handle: &AppHandle<R>) -> tauri::Result<Menu<R>> {
         &[&PredefinedMenuItem::minimize(handle, None)?],
     )?;
 
-    // --- Assemble the Full Menu ---
-    // The correct pattern is to create a mutable menu and append the submenus to it.
-    let mut menu = Menu::new(handle)?;
+    let menu = Menu::new(handle)?;
     menu.append(&app_menu)?;
     menu.append(&file_menu)?;
     menu.append(&edit_menu)?;
@@ -100,4 +94,3 @@ fn create_menu<R: Runtime>(handle: &AppHandle<R>) -> tauri::Result<Menu<R>> {
 
     Ok(menu)
 }
-

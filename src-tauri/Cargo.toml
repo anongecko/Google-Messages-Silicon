@@ -1,40 +1,30 @@
 [package]
-name = "claude-wrapper"
+name = "gemini-silicon"
 version = "0.1.0"
-description = "A highly optimized, lightweight Tauri wrapper for Claude.ai"
-authors = ["you"]
-license = ""
+description = "A highly optimized, lightweight Tauri wrapper for Gemini.ai"
+authors = ["anongecko"]
+license = "CC0-1.0"
 repository = ""
 edition = "2021"
-rust-version = "1.88" # Updated to your current version
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+rust-version = "1.88"
 
 [build-dependencies]
-# Requesting the v2 beta of tauri-build, which is compatible with the v2 CLI.
 tauri-build = { version = "2.0.0-beta", features = [] }
 
 [dependencies]
-# Requesting the v2 beta of tauri.
-tauri = { version = "2.0.0-beta", features = [] }
-# Replace the deprecated `shell` plugin with the new `opener` plugin.
+tauri = { version = "2.0.0-beta", features = ["wry"], default-features = false }
 tauri-plugin-opener = "2.0.0-beta"
-serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-url = "2.5"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+tikv-jemallocator = "0.6"
 
 [features]
-# this feature is used for production builds or when `devPath` points to the filesystem
-# DO NOT REMOVE!!
 custom-protocol = ["tauri/custom-protocol"]
 
-# --- Release Build Optimizations ---
-# This section is critical for performance and size.
-# It applies only when you run `pnpm tauri build` (not `dev`).
 [profile.release]
-panic = "abort"      # Abort on panic to reduce binary size.
-codegen-units = 1    # Use a single code generation unit for better optimization.
-lto = true           # Enable Link-Time Optimization for a smaller, faster binary.
-opt-level = "z"      # Optimize for binary size ("z" is for "size").
-strip = true         # Strip symbols from the binary to reduce size.
-
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "z"
+strip = true

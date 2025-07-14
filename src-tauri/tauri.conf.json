@@ -1,16 +1,16 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
-  "identifier": "ai.claude.wrapper",
-  "productName": "Claude",
+  "identifier": "ai.gemini.wrapper",
+  "productName": "Gemini",
   "version": "0.1.0",
   "build": {
-    "devUrl": "https://claude.ai"
+    "devUrl": "https://gemini.google.com"
   },
   "bundle": {
     "active": true,
     "category": "Productivity",
     "copyright": "",
-    "targets": ["app"],
+    "targets": ["app", "dmg"],
     "icon": ["icons/icon.png", "icons/icon.icns"],
     "macOS": {
       "minimumSystemVersion": "11.0"
@@ -22,14 +22,19 @@
     },
     "windows": [
       {
-        "url": "https://claude.ai",
+        "url": "https://gemini.google.com",
         "fullscreen": false,
         "height": 800,
         "resizable": true,
-        "title": "Claude",
+        "title": "Gemini",
         "width": 1280,
         "visible": false,
-        "userAgent": "Mozilla/5.0 (Macintosh; Arm Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15"
+        "userAgent": "Mozilla/5.0 (Macintosh; Arm Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15",
+        "incognito": false,
+        "alwaysOnTop": false,
+        "transparent": false,
+        "decorations": true,
+        "skipTaskbar": false
       }
     ]
   },

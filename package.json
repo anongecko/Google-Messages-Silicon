@@ -1,5 +1,5 @@
 {
-  "name": "claude-loves-rust",
+  "name": "gemini-silicon",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "tauri:build": "pnpm tauri build",
+    "tauri:dev": "pnpm tauri dev"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.6.0",
-    "@tauri-apps/plugin-shell": "^2.3.0"
+    "@tauri-apps/plugin-opener": "^2.3.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2.6.2",
