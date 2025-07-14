@@ -1,0 +1,39 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "identifier": "ai.claude.wrapper",
+  "productName": "Claude",
+  "version": "0.1.0",
+  "build": {
+    "devUrl": "https://claude.ai"
+  },
+  "bundle": {
+    "active": true,
+    "category": "Productivity",
+    "copyright": "",
+    "targets": ["app"],
+    "icon": ["icons/icon.png", "icons/icon.icns"],
+    "macOS": {
+      "minimumSystemVersion": "11.0"
+    }
+  },
+  "app": {
+    "security": {
+      "csp": null
+    },
+    "windows": [
+      {
+        "url": "https://claude.ai",
+        "fullscreen": false,
+        "height": 800,
+        "resizable": true,
+        "title": "Claude",
+        "width": 1280,
+        "visible": false,
+        "userAgent": "Mozilla/5.0 (Macintosh; Arm Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15"
+      }
+    ]
+  },
+  "plugins": {
+    "opener": {}
+  }
+}
